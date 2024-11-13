@@ -7,7 +7,6 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 
-
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -32,15 +31,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="en" data-theme="retro">
       <head />
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "retro" }}>
           <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
             {children}
           </main>
