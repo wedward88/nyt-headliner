@@ -12,12 +12,12 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
+        chomsky: ["var(--font-chomsky)"],
       },
     },
   },
-  darkMode: "class",
   plugins: [nextui(), require("daisyui")],
   daisyui: {
-    themes: ["retro", "coffee"],
+    themes: ["retro", "dracula"],
   },
 };

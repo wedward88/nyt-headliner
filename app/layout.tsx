@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontSans, chomsky } from "@/config/fonts";
 
 export const metadata: Metadata = {
   title: {
@@ -35,14 +35,13 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          "min-h-screen font-sans antialiased",
+          fontSans.variable,
+          chomsky.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "retro" }}>
-          <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-            {children}
-          </main>
+        <Providers>
+          <main className="container">{children}</main>
         </Providers>
       </body>
     </html>
