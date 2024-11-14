@@ -8,7 +8,7 @@ const ThemeToggle = () => {
   }, []);
 
   return (
-    <label className="flex-grow swap swap-rotate justify-end m-5">
+    <label className="swap swap-rotate justify-end m-5 absolute right-0">
       <input
         type="checkbox"
         className="theme-controller"

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { PressEvent } from "@react-types/shared";
 
 interface SubmitButtonProps {
   onPress: (event: React.MouseEvent) => void;

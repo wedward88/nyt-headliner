@@ -2,8 +2,6 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
-import { Providers } from "./providers";
-
 import { siteConfig } from "@/config/site";
 import { fontSans, chomsky } from "@/config/fonts";
 
@@ -18,13 +16,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -32,17 +23,19 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en" data-theme="retro">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+      ></meta>
       <head />
       <body
         className={clsx(
-          "min-h-screen font-sans antialiased",
+          "flex min-h-screen font-sans antialiased justify-center",
           fontSans.variable,
           chomsky.variable
         )}
       >
-        <Providers>
-          <main className="container">{children}</main>
-        </Providers>
+        <main className="container">{children}</main>
       </body>
     </html>
   );

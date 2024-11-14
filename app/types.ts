@@ -6,4 +6,6 @@ export interface HeadlineType {
   word_count: number;
   lead_paragraph: string;
   web_url: string;
+  pub_date: string;
+  multimedia: [{ url: string }];
 }

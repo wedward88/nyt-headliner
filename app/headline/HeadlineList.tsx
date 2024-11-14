@@ -11,7 +11,7 @@ const HeadlineList = (props: Props) => {
   return (
     <div>
       {headlines.length > 0 ? (
-        <ul>
+        <ul className="mt-10">
           {headlines.map((headline: HeadlineType, index) => (
             <Headline key={index} headline={headline} />
           ))}
