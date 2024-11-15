@@ -5,11 +5,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <ThemeToggle />
-      <h1
-        className={
-          "p-10 text-7xl font-chomsky self-center text-center"
-        }
-      >
+      <h1 className={"p-10 text-7xl font-chomsky self-center text-center"}>
         NYT Headliner
       </h1>
       <HeadlineDatePicker />

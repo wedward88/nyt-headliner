@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
@@ -22,17 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en" data-theme="retro">
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-      ></meta>
+    <html suppressHydrationWarning data-theme="retro" lang="en">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport" />
       <head />
       <body
         className={clsx(
           "flex min-h-screen font-sans antialiased justify-center",
           fontSans.variable,
-          chomsky.variable
+          chomsky.variable,
         )}
       >
         <main className="container">{children}</main>

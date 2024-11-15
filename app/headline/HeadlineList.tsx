@@ -1,6 +1,8 @@
 import React from "react";
-import Headline from "./Headline";
+
 import { HeadlineType } from "../types";
+
+import Headline from "./Headline";
 
 interface Props {
   headlines: Array<HeadlineType>;
@@ -8,6 +10,7 @@ interface Props {
 
 const HeadlineList = (props: Props) => {
   const { headlines } = props;
+
   return (
     <div>
       {headlines.length > 0 ? (
@@ -17,7 +20,7 @@ const HeadlineList = (props: Props) => {
           ))}
         </ul>
       ) : (
-        <p></p>
+        <p />
       )}
     </div>
   );

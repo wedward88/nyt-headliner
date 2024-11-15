@@ -1,13 +1,14 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
 
-import SubmitButton from "../components/SubmitButton";
-import HeadlineList from "./HeadlineList";
-import HeadlineLoading from "./HeadlineLoading";
-import HeadlineError from "./HeadlineError";
+import SubmitButton from '../components/SubmitButton';
+
+import HeadlineList from './HeadlineList';
+import HeadlineLoading from './HeadlineLoading';
+import HeadlineError from './HeadlineError';
 
 const HeadlineDatePicker = () => {
-  const [date, setDate] = useState(new Date().toISOString());
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [headlines, setHeadlines] = useState([]);
   const [shouldError, setShouldError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,34 +21,34 @@ const HeadlineDatePicker = () => {
     }
 
     try {
-      const response = await fetch("/api/fetch-data", {
-        method: "POST",
+      const response = await fetch('/api/fetch-data', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ date: date }),
       });
 
       let data = await response.json();
-      console.log(data);
+
       setHeadlines(data.response.docs);
       setIsLoading(false);
     } catch (error) {
-      console.error("Error", error);
+      throw Error(`Unable to fetch headlines. Error:${error}`);
     }
   };
 
   return (
-    <div className="w-full sm:w-full md:w-full lg:w-1/2 self-center">
+    <div className='w-full sm:w-full md:w-full lg:w-1/2 self-center'>
       {shouldError ? (
         <HeadlineError onClick={() => setShouldError(false)} />
       ) : (
-        <div className="flex flex-col items-center">
-          <div className="flex space-x-5 justify-center items-center">
+        <div className='flex flex-col items-center'>
+          <div className='flex space-x-5 justify-center items-center'>
             <input
-              className="rounded-md p-3 text-secondary"
-              type="date"
-              id="start"
+              className='rounded-md p-3 text-secondary'
+              id='start'
+              type='date'
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
@@ -58,9 +59,8 @@ const HeadlineDatePicker = () => {
           ) : headlines.length > 0 ? (
             <HeadlineList headlines={headlines} />
           ) : (
-            <p className="text-4xl w-4/5 mt-10 text-center">
-              Select a date above to view articles from the New York
-              Times.
+            <p className='text-4xl w-4/5 mt-10 text-center'>
+              Select a date above to view articles from the New York Times.
             </p>
           )}
         </div>
