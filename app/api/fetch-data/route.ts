@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 const apiURL = process.env.NYT_URL;
 const apiKey = process.env.NYT_API_KEY;

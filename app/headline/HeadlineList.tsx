@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { HeadlineType } from "../types";
+import { HeadlineType } from '../types';
 
-import Headline from "./Headline";
+import Headline from './Headline';
 
 interface Props {
   headlines: Array<HeadlineType>;
@@ -14,7 +14,7 @@ const HeadlineList = (props: Props) => {
   return (
     <div>
       {headlines.length > 0 ? (
-        <ul className="mt-10">
+        <ul className='mt-10'>
           {headlines.map((headline: HeadlineType, index) => (
             <Headline key={index} headline={headline} />
           ))}

@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
 interface SubmitButtonProps {
   onPress: (event: React.MouseEvent) => void;
@@ -7,7 +7,7 @@ interface SubmitButtonProps {
 
 const SubmitButton = (props: SubmitButtonProps) => {
   return (
-    <button className="btn btn-primary" onClick={props.onPress}>
+    <button className='btn btn-primary' onClick={props.onPress}>
       Submit
     </button>
   );

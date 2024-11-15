@@ -1,9 +1,9 @@
-import "@/styles/globals.css";
-import { Metadata } from "next";
-import clsx from "clsx";
+import '@/styles/globals.css';
+import { Metadata } from 'next';
+import clsx from 'clsx';
 
-import { siteConfig } from "@/config/site";
-import { fontSans, chomsky } from "@/config/fonts";
+import { siteConfig } from '@/config/site';
+import { fontSans, chomsky } from '@/config/fonts';
 
 export const metadata: Metadata = {
   title: {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: "/favicon.ico",
+    icon: '/favicon.ico',
   },
 };
 
@@ -22,17 +22,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning data-theme="retro" lang="en">
-      <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <html suppressHydrationWarning data-theme='retro' lang='en'>
+      <meta content='width=device-width, initial-scale=1.0' name='viewport' />
       <head />
       <body
         className={clsx(
-          "flex min-h-screen font-sans antialiased justify-center",
+          'flex min-h-screen font-sans antialiased justify-center',
           fontSans.variable,
-          chomsky.variable,
+          chomsky.variable
         )}
       >
-        <main className="container">{children}</main>
+        <main className='container'>{children}</main>
       </body>
     </html>
   );
