@@ -19,7 +19,8 @@ const Headline = ({
     web_url,
   },
 }: Props) => {
-  let imageUrl = multimedia.length > 0 ? multimedia[0].url : '';
+  let imageUrl =
+    Array.isArray(multimedia) && multimedia.length > 0 ? multimedia[0].url : '';
 
   return (
     <li className='card flex flex-col m-5 p-2 border-1 bg-secondary rounded-2xl shadow-xl'>

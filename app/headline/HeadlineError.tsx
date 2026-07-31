@@ -1,9 +1,14 @@
 import React from 'react';
 
 interface Props {
+  message?: string;
   onClick: (event: React.MouseEvent) => void;
 }
-const HeadlineError = ({ onClick }: Props) => {
+
+const HeadlineError = ({
+  message = 'Something went wrong loading articles.',
+  onClick,
+}: Props) => {
   return (
     <div className='alert' role='alert'>
       <svg
@@ -19,7 +24,7 @@ const HeadlineError = ({ onClick }: Props) => {
           strokeWidth='2'
         />
       </svg>
-      <span>There are no articles from the future...yet.</span>
+      <span>{message}</span>
       <button className='btn btn-primary' onClick={onClick}>
         Ok
       </button>
