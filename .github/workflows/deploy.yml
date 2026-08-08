@@ -35,16 +35,41 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new \
             "root@${VPS_HOST}" 'bash -s' <<'EOF'
           set -euo pipefail
-          export NVM_DIR="$HOME/.nvm"
-          # shellcheck disable=SC1091
-          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-          cd /root/dev/nyt-headliner
-          git remote get-url origin >/dev/null
-          git fetch origin master
-          git reset --hard origin/master
-          npm install
-          npm run build
-          pm2 restart nyt-headliner --update-env
-          pm2 save
+          APP_DIR=/home/deploy/apps/nyt-headliner
+          export PATH="/usr/bin:$PATH"
+
+          if [[ ! -d "$APP_DIR/.git" ]]; then
+            echo "App dir is not a git checkout; aborting"
+            exit 1
+          fi
+
+          if [[ -f "$APP_DIR/.env.local" ]]; then
+            cp -a "$APP_DIR/.env.local" /tmp/nyt-headliner.env.local.bak
+          fi
+
+          chown -R deploy:deploy "$APP_DIR"
+          sudo -u deploy bash -lc "
+            set -euo pipefail
+            cd '$APP_DIR'
+            git remote get-url origin >/dev/null
+            git fetch origin master
+            git reset --hard origin/master
+          "
+
+          if [[ -f /tmp/nyt-headliner.env.local.bak ]]; then
+            cp -a /tmp/nyt-headliner.env.local.bak "$APP_DIR/.env.local"
+            chown deploy:deploy "$APP_DIR/.env.local"
+            chmod 600 "$APP_DIR/.env.local"
+          fi
+
+          sudo -u deploy bash -lc "
+            set -euo pipefail
+            cd '$APP_DIR'
+            npm install --legacy-peer-deps
+            npm run build
+            cd /home/deploy
+            pm2 restart nyt-headliner --update-env
+            pm2 save
+          "
           echo "NYT Headliner deploy OK"
           EOF
